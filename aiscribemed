@@ -1,1 +1,6 @@
+aiscribemed/
+├── api/
+│   └── generateSOAPNote.js
+├── package.json
+└── README.md
 
