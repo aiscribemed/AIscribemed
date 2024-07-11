@@ -1,3 +1,53 @@
+aiscribemed/
+├── api/
+│   └── generateSOAPNote.js
+├── package.json
+└── README.md
+const axios = require('axios');
+
+module.exports = async (req, res) => {
+    const { conversation } = req.body;
+
+    try {
+        const response = await axios.post('GPT_API_ENDPOINT', {
+            prompt: conversation,
+        }, {
+            headers: {
+                'Authorization': `Bearer YOUR_API_KEY`
+            }
+        });
+
+        res.status(200).json(response.data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error generating SOAP note');
+    }
+};
+{
+  "name": "aiscribemed",
+  "version": "1.0.0",
+  "main": "api/generateSOAPNote.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
+# AIscribeMed
+
+This project is set up to generate SOAP notes using AIscribeMed's API. The project uses a serverless function deployed on Vercel.
+
+## Setup
+
+1. Clone the repository.
+2. Install dependencies with `npm install`.
+3. Deploy to Vercel.
+
+## Usage
+
+- The API endpoint is `/api/generateSOAPNote`.
+- Make POST requests with a JSON body containing the `conversation` field.
 cd path/to/your/project
 git init
 git add .
